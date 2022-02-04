@@ -1,0 +1,426 @@
+@import './colours.scss';
+@import './spacing.scss';
+@import './mixin.scss';
+@import './function.scss';
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  padding-top: spacing(lg);
+  border-top: 1px solid $keyline-grey;
+
+  h2 {
+    margin: 0 0 spacing(md);
+    text-align: center;
+    color: $grey;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+
+  h3 {
+    margin: 0 0 spacing(xs);
+    text-align: center;
+    color: $grey;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.375rem;
+
+    @include breakpoint(sm) {
+      text-align: left;
+    }
+  }
+
+  h4 {
+    margin: spacing(sm) 0 spacing(3xs);
+    text-align: center;
+    color: $grey;
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 2rem;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include breakpoint(sm) {
+      flex-direction: row;
+    }
+  }
+
+  &__rating-container {
+    margin: 0 auto spacing(md);
+
+    @include breakpoint(sm) {
+      margin: 0;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+  }
+
+  &__grade {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: $grey;
+    font-size: 2.1875rem;
+    font-weight: 500;
+    line-height: 2.75rem;
+
+    @include breakpoint(sm) {
+      width: auto;
+      padding-right: spacing(2xs);
+      border-right: 1px solid $keyline-grey;
+    }
+  }
+
+  &__stars-rating {
+    position: absolute;
+    overflow: hidden;
+    width: 0;
+    height: 2rem;
+    background-image: url('../images/rating.svg');
+    background-repeat: no-repeat;
+    background-size: 10rem auto;
+  }
+
+  &__stars-container {
+    position: relative;
+    display: inline-block;
+    width: 10rem;
+    height: 2rem;
+    margin-left: auto;
+    background-image: url('../images/rating-empty.svg');
+    background-repeat: no-repeat;
+    background-size: 10rem auto;
+
+    @include breakpoint(sm) {
+      margin-left: 0;
+    }
+  }
+
+  &__info {
+    display: inline;
+    margin: 0 auto 0 spacing(3xs);
+    white-space: nowrap;
+    color: $light-grey;
+    font-size: 0.75rem;
+    line-height: 1rem;
+
+    @include breakpoint(sm) {
+      margin: 0 0 0 spacing(3xs);
+    }
+  }
+
+  &__button {
+    width: 100%;
+    height: 4rem;
+    margin: 0 auto;
+    padding: 0 spacing(sm);
+
+    @include breakpoint(sm) {
+      width: 11.75rem;
+      margin-right: 0;
+    }
+  }
+
+  &__message {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: spacing(sm);
+  }
+
+  &__icon {
+    margin: spacing(lg) auto 0;
+    font-size: 4rem;
+  }
+
+  &__text {
+    text-align: center;
+    color: $light-grey;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(sm) {
+      margin-top: spacing(md);
+    }
+
+    &__input-container {
+      width: 100%;
+      margin: 0 auto;
+
+      @include breakpoint(sm) {
+        max-width: 34.875rem;
+      }
+
+      &:last-of-type {
+        margin-bottom: spacing(md);
+      }
+    }
+
+    h5,
+    &__name-label,
+    &__email-label,
+    &__title-label,
+    &__textarea-label {
+      margin: 0;
+      color: $grey;
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.75rem;
+    }
+
+    &__stars {
+      display: inline-flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: center;
+      margin-bottom: spacing(sm);
+      padding-left: 0;
+      cursor: pointer;
+      font-size: 2rem;
+
+      .form__star-label {
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+
+        &::before,
+        &::after {
+          content: none;
+        }
+      }
+    }
+
+    &__star-input {
+      clip: rect(1px, 1px, 1px, 1px);
+      padding: 0;
+      border: 0;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      border-bottom: 1px solid transparent;
+    }
+
+    &__star-label:hover,
+    &__star-input:checked ~ .form__star-label svg {
+      fill: $blue;
+
+      & ~ .form__star-label svg {
+        fill: $blue;
+      }
+    }
+
+    &__star-input:focus + .form__star-label {
+      border-bottom: 1px solid $blue;
+    }
+
+    &__star-label:hover svg {
+      fill: $blue;
+    }
+
+    &__name-input,
+    &__email-input,
+    &__title-input,
+    textarea {
+      margin-top: spacing(3xs);
+      border: 1px solid $light-grey-2;
+      border-radius: 0.25rem;
+
+      &::placeholder {
+        color: $light-grey-3;
+        font-size: 0.875rem;
+        line-height: 1.75rem;
+      }
+    }
+
+    &__name-input,
+    &__email-input,
+    &__title-input {
+      margin-bottom: spacing(md);
+    }
+
+    textarea {
+      height: 8.25rem;
+      margin-bottom: spacing(sm);
+      resize: none;
+    }
+
+    &__name-input:focus,
+    &__email-input:focus,
+    &__title-input:focus,
+    textarea:focus {
+      outline: 1px solid $blue;
+      outline-offset: spacing(5xs);
+    }
+
+    .reviews__button {
+      width: 100%;
+      margin: 0 auto;
+
+      @include breakpoint(sm) {
+        width: 11.75rem;
+      }
+    }
+
+    &__checkbox-label {
+      display: flex;
+
+      &::before {
+        margin-right: spacing(xs);
+        padding-right: spacing(2xs);
+
+        @include breakpoint(xs) {
+          padding-right: spacing(3xs);
+        }
+      }
+    }
+
+    input[type='checkbox'] {
+      width: 20px;
+      height: 20px;
+    }
+
+    input[type='checkbox']:focus + .form__checkbox-label::before {
+      outline: 1px solid $blue;
+      outline-offset: spacing(5xs);
+    }
+
+    &__input-container input:invalid:focus,
+    &__input-container textarea:invalid:focus {
+      border: 1px solid $red;
+    }
+
+    input[type='checkbox']:invalid:focus + .form__checkbox-label::before {
+      border: 1px solid $red;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 (-spacing(4xs));
+    padding-top: spacing(lg);
+
+    @include breakpoint(sm) {
+      margin: spacing(lg) (-spacing(4xs)) 0;
+      border-top: 1px solid $keyline-grey;
+    }
+  }
+
+  .card {
+    display: block;
+    overflow: hidden;
+    flex: 0 1 100%;
+    margin: spacing(4xs);
+    padding: spacing(xs);
+    border: 1px solid $keyline-grey;
+    border-radius: 0.25rem;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.15);
+
+    @include breakpoint(xs) {
+      flex: 0 1 calc(50% - 3rem);
+    }
+
+    @include breakpoint(md) {
+      flex: 0 1 calc(25% - 3rem);
+    }
+
+    &__name {
+      margin: 0 0 spacing(5xs);
+      text-align: left;
+      word-break: break-word;
+      color: $grey;
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.75rem;
+    }
+
+    .reviews__stars-rating {
+      width: 0;
+      height: 1rem;
+      background-size: 5rem auto;
+    }
+
+    .reviews__stars-container {
+      width: 5rem;
+      height: 1rem;
+      margin-left: 0;
+      background-size: 5rem auto;
+    }
+
+    &__rating-container {
+      display: flex;
+      align-items: center;
+      margin: 0 auto spacing(sm);
+
+      @include breakpoint(sm) {
+        margin: 0 0 spacing(sm);
+      }
+    }
+
+    &__title {
+      margin: 0 0 spacing(3xs);
+      color: $grey;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5rem;
+    }
+
+    i {
+      font-style: normal;
+    }
+
+    &__description {
+      margin-top: 0;
+      word-break: break-word;
+      color: $grey-2;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.25rem;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    margin: spacing(sm) 0 0 auto;
+    padding: 0;
+    list-style: none;
+    border: 1px solid $keyline-grey;
+    border-radius: 0.25rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      padding: spacing(3xs) 0;
+      cursor: pointer;
+      border: 1px solid transparent;
+
+      &:not(:last-child) {
+        border-right: 1px solid $keyline-grey;
+      }
+
+      &:hover,
+      &:focus {
+        border: 1px solid $blue;
+      }
+    }
+
+    .active {
+      font-weight: 700;
+    }
+  }
+}

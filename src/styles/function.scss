@@ -1,0 +1,9 @@
+@function spacing($variant: default, $map: $spacing-map) {
+  $value: map-get($map, $variant);
+
+  @if type-of($value) == number {
+      @return $value;
+  } @else {
+      @error 'Spacing variant `#{$variant}` not found. Available variants: #{available-names($map)}';
+  }
+}
