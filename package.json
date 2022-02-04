@@ -1,6 +1,7 @@
 {
-  "name": "vite-reactts-eslint-prettier",
-  "version": "0.0.0",
+  "name": "review",
+  "version": "1.0.0",
+  "author": "Andrey Kudinov",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
