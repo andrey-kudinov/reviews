@@ -1,12 +1,16 @@
+@import './button.scss';
 @import './colours.scss';
 @import './spacing.scss';
+@import './breakpoints.scss';
 @import './mixin.scss';
 @import './function.scss';
 
 .reviews {
   display: flex;
   flex-direction: column;
-  padding-top: spacing(lg);
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: spacing(lg) spacing(xs);
   border-top: 1px solid $keyline-grey;
 
   h2 {
@@ -49,6 +53,11 @@
     @include breakpoint(sm) {
       flex-direction: row;
     }
+  }
+
+  &__top-border {
+    padding-bottom: spacing(md);
+    border-bottom: 1px solid $keyline-grey;
   }
 
   &__rating-container {
@@ -123,10 +132,9 @@
     width: 100%;
     height: 4rem;
     margin: 0 auto;
-    padding: 0 spacing(sm);
 
     @include breakpoint(sm) {
-      width: 11.75rem;
+      width: 12rem;
       margin-right: 0;
     }
   }
@@ -152,12 +160,14 @@
   .form {
     display: flex;
     flex-direction: column;
+    margin-top: spacing(sm);
 
     @include breakpoint(sm) {
       margin-top: spacing(md);
     }
 
     &__input-container {
+      position: relative;
       width: 100%;
       margin: 0 auto;
 
@@ -188,29 +198,24 @@
       flex-direction: row-reverse;
       justify-content: center;
       margin-bottom: spacing(sm);
-      padding-left: 0;
-      cursor: pointer;
       font-size: 2rem;
 
       .form__star-label {
         cursor: pointer;
         border-bottom: 1px solid transparent;
-
-        &::before,
-        &::after {
-          content: none;
-        }
       }
     }
 
     &__star-input {
       clip: rect(1px, 1px, 1px, 1px);
       padding: 0;
+      margin: 0;
       border: 0;
       height: 1px;
       width: 1px;
       overflow: hidden;
       border-bottom: 1px solid transparent;
+      opacity: 0;
     }
 
     &__star-label:hover,
@@ -235,8 +240,10 @@
     &__title-input,
     textarea {
       margin-top: spacing(3xs);
+      padding: 0 spacing(sm);
       border: 1px solid $light-grey-2;
       border-radius: 0.25rem;
+      box-sizing: border-box;
 
       &::placeholder {
         color: $light-grey-3;
@@ -248,12 +255,16 @@
     &__name-input,
     &__email-input,
     &__title-input {
+      width: 100%;
+      height: 3rem;
       margin-bottom: spacing(md);
     }
 
     textarea {
+      width: 100%;
       height: 8.25rem;
       margin-bottom: spacing(sm);
+      padding-top: 1rem;
       resize: none;
     }
 
@@ -275,26 +286,13 @@
     }
 
     &__checkbox-label {
-      display: flex;
-
-      &::before {
-        margin-right: spacing(xs);
-        padding-right: spacing(2xs);
-
-        @include breakpoint(xs) {
-          padding-right: spacing(3xs);
-        }
-      }
+      padding-left: spacing(3xs);
+      cursor: pointer;
     }
 
     input[type='checkbox'] {
       width: 20px;
       height: 20px;
-    }
-
-    input[type='checkbox']:focus + .form__checkbox-label::before {
-      outline: 1px solid $blue;
-      outline-offset: spacing(5xs);
     }
 
     &__input-container input:invalid:focus,
@@ -310,11 +308,11 @@
   &__cards {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 (-spacing(4xs));
+    justify-content: center;
     padding-top: spacing(lg);
 
     @include breakpoint(sm) {
-      margin: spacing(lg) (-spacing(4xs)) 0;
+      margin: spacing(lg)  0;
       border-top: 1px solid $keyline-grey;
     }
   }
