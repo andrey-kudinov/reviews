@@ -32,109 +32,96 @@ const productData = {
 
 const cardsData = [
   {
-    name: 'Ashley N 1',
+    author: 'Ashley N 1',
     rating: 1.2,
     date: '3 weeks ago',
     title: 'Love it!!!',
-    description:
-      'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
+    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
   },
   {
-    name: 'John 1',
+    author: 'John 1',
     rating: 2.5,
     date: '3 weeks ago',
     title: 'Great quality',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   },
   {
-    name: 'Zoe Mitchel 1',
+    author: 'Zoe Mitchel 1',
     rating: 4.3,
     date: '3 weeks ago',
     title: 'Amazing glasses',
-    description:
-      'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
+    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
   },
   {
-    name: 'Michael Ho 1',
+    author: 'Michael Ho 1',
     rating: 4.8,
     date: '3 weeks ago',
     title: 'Best glasses by far',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   },
   {
-    name: 'Ashley N 2',
+    author: 'Ashley N 2',
     rating: 1.2,
     date: '3 weeks ago',
     title: 'Love it!!!',
-    description:
-      'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
+    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
   },
   {
-    name: 'John 2',
+    author: 'John 2',
     rating: 2.5,
     date: '3 weeks ago',
     title: 'Great quality',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   },
   {
-    name: 'Zoe Mitchel 2',
+    author: 'Zoe Mitchel 2',
     rating: 4.3,
     date: '3 weeks ago',
     title: 'Amazing glasses',
-    description:
-      'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
+    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
   },
   {
-    name: 'Michael Ho 2',
+    author: 'Michael Ho 2',
     rating: 4.8,
     date: '3 weeks ago',
     title: 'Best glasses by far',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   },
 
   {
-    name: 'Ashley N 3',
+    author: 'Ashley N 3',
     rating: 1.2,
     date: '3 weeks ago',
     title: 'Love it!!!',
-    description:
-      'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
+    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
   },
   {
-    name: 'John 3',
+    author: 'John 3',
     rating: 2.5,
     date: '3 weeks ago',
     title: 'Great quality',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   },
   {
-    name: 'Zoe Mitchel 3',
+    author: 'Zoe Mitchel 3',
     rating: 4.3,
     date: '3 weeks ago',
     title: 'Amazing glasses',
-    description:
-      'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
+    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
   },
   {
-    name: 'Michael Ho 3',
+    author: 'Michael Ho 3',
     rating: 4.8,
     date: '3 weeks ago',
     title: 'Best glasses by far',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   },
   {
-    name: 'Michael Ho 4',
+    author: 'Michael Ho 4',
     rating: 4.8,
     date: '3 weeks ago',
     title: 'Best glasses by far',
-    description:
-      'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
+    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
   }
 ]
 
@@ -151,6 +138,18 @@ cardsData.forEach((card) => {
   card.rating = randomRating(1, 5)
 })
 
+const consoleStyles: any = {
+  log1: 'font: 2rem/1 Arial; color: crimson;',
+  log2: 'font: 2rem/1 Arial; color: orangered;',
+  log3: 'font: 2rem/1 Arial; color: olivedrab;',
+  log4: 'font: 2rem/1 Arial; color: darkmagenta;',
+  log5: 'font: 2rem/1 Arial; color: darkblue;'
+}
+
+const log = (msg: string, style: string) => {
+  console.log('%c' + msg, consoleStyles[style])
+}
+
 interface IData {
   name: string
   email: string
@@ -160,7 +159,7 @@ interface IData {
 }
 
 const Review: FC<any> = () => {
-  const [currentBlock, setCurrentBlock] = useState('form')
+  const [currentBlock, setCurrentBlock] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [currentCardsOnPage, setCurrentCards] = useState<any[]>([])
   const [countPages, setCountPages] = useState(0)
@@ -197,6 +196,10 @@ const Review: FC<any> = () => {
 
   const setForm = () => {
     setCurrentBlock('form')
+  }
+
+  const handleCancel = () => {
+    setCurrentBlock('')
   }
 
   const handleRating = (e: any) => {
@@ -255,7 +258,16 @@ const Review: FC<any> = () => {
     ) {
       return
     }
-    console.log(rating, name, email, title, review)
+
+    log(`rating - ${rating}`, 'log1')
+    log(`name - ${name}`, 'log2')
+    log(`email - ${email}`, 'log3')
+    log(`title - ${title}`, 'log4')
+    log(`review - ${review}`, 'log5')
+
+    randomRating(1, 10) < 7
+      ? setCurrentBlock('success-message')
+      : setCurrentBlock('fail-message')
   }
 
   const nextCardsGroup = () => {
@@ -304,16 +316,21 @@ const Review: FC<any> = () => {
     <section className='reviews'>
       <h2>Customer reviews</h2>
 
-      <div className='reviews__top'>
+      <div
+        className={`reviews__top ${
+          currentBlock === 'form' ? 'reviews__top-border' : ''
+        }`}>
         <AverageRating
           averageRating={productData.averageRating}
           numberOfReviews={productData.numberOfReviews}
         />
 
-        {(currentBlock === 'success-message' ||
-          currentBlock === 'fail-message' ||
-          currentBlock === null) && (
-          <button className='button button--light reviews__button' onClick={setForm}>
+        {currentBlock === 'form' ? (
+          <button className='reviews__button' onClick={handleCancel}>
+            Cancel
+          </button>
+        ) : (
+          <button className='reviews__button' onClick={setForm}>
             Write a review
           </button>
         )}
