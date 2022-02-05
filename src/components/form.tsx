@@ -151,7 +151,7 @@ export const Form = (props: any) => {
         </label>
       </div>
 
-      <button className='button button--light reviews__button' type='submit'>
+      <button className='reviews__button' type='submit'>
         Submit review
       </button>
     </form>
