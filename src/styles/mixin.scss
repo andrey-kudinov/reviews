@@ -1,5 +1,25 @@
-@mixin breakpoint($screen) {
-  @media (min-width: $screen+'px') {
-    @content;
+@mixin breakpoint($point) {
+  @each $breakpoint in $breakpoints {
+      $name: nth($breakpoint, 1);
+      $size: nth($breakpoint, 2);
+
+      @if $point == $name {
+          @media (min-width: $size) {
+              @content;
+          }
+      }
+  }
+}
+
+@mixin breakpoint-down($point) {
+  @each $breakpoint in $breakpoints {
+      $name: nth($breakpoint, 1);
+      $size: nth($breakpoint, 2);
+
+      @if $point == $name {
+          @media (max-width: $size - 1px) {
+              @content;
+          }
+      }
   }
 }
