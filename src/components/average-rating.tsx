@@ -1,6 +1,8 @@
 import React from 'react'
 
-export const AverageRating = ({ averageRating, numberOfReviews }: any) => {
+import type { IProductData } from '../data/data'
+
+export const AverageRating = ({ averageRating, numberOfReviews }: IProductData) => {
   /**
    * ratingWidth = card rating * width of one star
    */

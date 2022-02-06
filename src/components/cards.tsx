@@ -1,7 +1,14 @@
 import React from 'react'
 
-export const Cards = ({ currentCardsOnPage }: any) => {
-  const cards = currentCardsOnPage.map((card: any, index: number) => {
+import type { ICardsData } from '../data/data'
+
+interface IProps {
+  currentCardsOnPage: ICardsData[]
+}
+
+export const Cards = (props: IProps) => {
+  const { currentCardsOnPage } = props
+  const cards = currentCardsOnPage.map((card: ICardsData, index: number) => {
     /**
      * ratingWidth = card rating * width of one star
      */

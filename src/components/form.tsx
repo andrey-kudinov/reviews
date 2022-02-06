@@ -1,6 +1,20 @@
-import React, { Fragment } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { Fragment, SyntheticEvent } from 'react'
 
-export const Form = (props: any) => {
+import type { IData } from '../Reviews'
+
+interface IProps {
+  data: IData
+  handleRating: (e: SyntheticEvent) => void
+  handleName: (e: SyntheticEvent) => void
+  handleEmail: (e: SyntheticEvent) => void
+  handleTitle: (e: SyntheticEvent) => void
+  handleReview: (e: SyntheticEvent) => void
+  handleCheck: (e: SyntheticEvent) => void
+  handleSubmit: (e: SyntheticEvent) => void
+}
+
+export const Form = (props: IProps) => {
   const {
     data,
     handleRating,
