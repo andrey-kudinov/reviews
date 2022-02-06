@@ -1,4 +1,4 @@
-import './styles/Review.scss'
+import './styles/Reviews.scss'
 
 import React, { FC, useEffect, useRef, useState } from 'react'
 
@@ -158,7 +158,7 @@ interface IData {
   rating: string
 }
 
-const Review: FC<any> = () => {
+const Reviews: FC<any> = () => {
   const [currentBlock, setCurrentBlock] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [currentCardsOnPage, setCurrentCards] = useState<any[]>([])
@@ -371,4 +371,4 @@ const Review: FC<any> = () => {
   )
 }
 
-export default Review
+export default Reviews

@@ -1,13 +1,11 @@
-import './styles/index.css'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Review from './Review'
+import Reviews from './Reviews'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Review />
+    <Reviews />
   </React.StrictMode>,
   document.getElementById('root')
 )

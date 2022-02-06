@@ -107,7 +107,7 @@ export const Form = (props: any) => {
 
       <div className='form__input-container'>
         <label className='form__title-label' htmlFor='title'>
-          Review title
+          Reviews title
           <span title='This field is mandatory' aria-label='required'>
             *
           </span>
