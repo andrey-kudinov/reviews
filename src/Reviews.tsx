@@ -1,6 +1,13 @@
 import './styles/Reviews.scss'
 
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, {
+  FC,
+  KeyboardEvent,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 
 import {
   AverageRating,
@@ -10,147 +17,10 @@ import {
   Pagination,
   SuccessMessage
 } from './components/'
+import type { ICardsData, IProductData } from './data/data'
+import { log, randomRating } from './helpers/helpers'
 
-// interface IReviews {
-//   averageRating: number
-//   numberOfReviews: number
-//   reviewCards: IReviewCards[]
-// }
-
-// interface IReviewCards {
-//   date: string
-//   rating: string
-//   author: string
-//   title: string
-//   body: string
-// }
-
-const productData = {
-  averageRating: 4.5,
-  numberOfReviews: 193
-}
-
-const cardsData = [
-  {
-    author: 'Ashley N 1',
-    rating: 1.2,
-    date: '3 weeks ago',
-    title: 'Love it!!!',
-    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
-  },
-  {
-    author: 'John 1',
-    rating: 2.5,
-    date: '3 weeks ago',
-    title: 'Great quality',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  },
-  {
-    author: 'Zoe Mitchel 1',
-    rating: 4.3,
-    date: '3 weeks ago',
-    title: 'Amazing glasses',
-    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
-  },
-  {
-    author: 'Michael Ho 1',
-    rating: 4.8,
-    date: '3 weeks ago',
-    title: 'Best glasses by far',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  },
-  {
-    author: 'Ashley N 2',
-    rating: 1.2,
-    date: '3 weeks ago',
-    title: 'Love it!!!',
-    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
-  },
-  {
-    author: 'John 2',
-    rating: 2.5,
-    date: '3 weeks ago',
-    title: 'Great quality',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  },
-  {
-    author: 'Zoe Mitchel 2',
-    rating: 4.3,
-    date: '3 weeks ago',
-    title: 'Amazing glasses',
-    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
-  },
-  {
-    author: 'Michael Ho 2',
-    rating: 4.8,
-    date: '3 weeks ago',
-    title: 'Best glasses by far',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  },
-
-  {
-    author: 'Ashley N 3',
-    rating: 1.2,
-    date: '3 weeks ago',
-    title: 'Love it!!!',
-    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
-  },
-  {
-    author: 'John 3',
-    rating: 2.5,
-    date: '3 weeks ago',
-    title: 'Great quality',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  },
-  {
-    author: 'Zoe Mitchel 3',
-    rating: 4.3,
-    date: '3 weeks ago',
-    title: 'Amazing glasses',
-    body: 'Love the glasses. Very durable and solid. Definitely bring out the best of me.'
-  },
-  {
-    author: 'Michael Ho 3',
-    rating: 4.8,
-    date: '3 weeks ago',
-    title: 'Best glasses by far',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  },
-  {
-    author: 'Michael Ho 4',
-    rating: 4.8,
-    date: '3 weeks ago',
-    title: 'Best glasses by far',
-    body: 'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.'
-  }
-]
-
-const randomRating = (min: number, max: number) => {
-  return Number((Math.random() * (max - min + 1) + min).toFixed(1))
-}
-
-const randomDate = (start: Date, end: Date) => {
-  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
-}
-
-cardsData.forEach((card) => {
-  card.date = String(randomDate(new Date(2012, 0, 1), new Date()))
-  card.rating = randomRating(1, 5)
-})
-
-const consoleStyles: any = {
-  log1: 'font: 2rem/1 Arial; color: crimson;',
-  log2: 'font: 2rem/1 Arial; color: orangered;',
-  log3: 'font: 2rem/1 Arial; color: olivedrab;',
-  log4: 'font: 2rem/1 Arial; color: darkmagenta;',
-  log5: 'font: 2rem/1 Arial; color: darkblue;'
-}
-
-const log = (msg: string, style: string) => {
-  console.log('%c' + msg, consoleStyles[style])
-}
-
-interface IData {
+export interface IData {
   name: string
   email: string
   title: string
@@ -158,10 +28,16 @@ interface IData {
   rating: string
 }
 
-const Reviews: FC<any> = () => {
+interface IProps {
+  cardsData: ICardsData[]
+  productData: IProductData
+}
+
+const Reviews: FC<IProps> = (props: IProps) => {
+  const { cardsData, productData } = props
   const [currentBlock, setCurrentBlock] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [currentCardsOnPage, setCurrentCards] = useState<any[]>([])
+  const [currentCardsOnPage, setCurrentCards] = useState<ICardsData[]>([])
   const [countPages, setCountPages] = useState(0)
   const [isChecked, setChecked] = useState(false)
   const [data, setData] = useState<IData>({
@@ -202,33 +78,38 @@ const Reviews: FC<any> = () => {
     setCurrentBlock('')
   }
 
-  const handleRating = (e: any) => {
+  const handleRating = (e: SyntheticEvent) => {
     e.persist()
-    setData((state) => ({ ...state, rating: e.target.value }))
+    const input = e.target as HTMLInputElement
+    setData((state) => ({ ...state, rating: input.value }))
   }
 
-  const handleName = (e: any) => {
+  const handleName = (e: SyntheticEvent) => {
     e.persist()
-    e.target.value = cleanUpString(e.target.value)
-    setData((state) => ({ ...state, name: e.target.value }))
+    const input = e.target as HTMLInputElement
+    input.value = cleanUpString(input.value)
+    setData((state) => ({ ...state, name: input.value }))
   }
 
-  const handleEmail = (e: any) => {
+  const handleEmail = (e: SyntheticEvent) => {
     e.persist()
-    e.target.value = cleanUpString(e.target.value, true)
-    setData((state) => ({ ...state, email: e.target.value }))
+    const input = e.target as HTMLInputElement
+    input.value = cleanUpString(input.value, true)
+    setData((state) => ({ ...state, email: input.value }))
   }
 
-  const handleTitle = (e: any) => {
+  const handleTitle = (e: SyntheticEvent) => {
     e.persist()
-    e.target.value = cleanUpString(e.target.value)
-    setData((state) => ({ ...state, title: e.target.value }))
+    const input = e.target as HTMLInputElement
+    input.value = cleanUpString(input.value)
+    setData((state) => ({ ...state, title: input.value }))
   }
 
-  const handleReview = (e: any) => {
+  const handleReview = (e: SyntheticEvent) => {
     e.persist()
-    e.target.value = cleanUpString(e.target.value)
-    setData((state) => ({ ...state, review: e.target.value }))
+    const input = e.target as HTMLInputElement
+    input.value = cleanUpString(input.value)
+    setData((state) => ({ ...state, review: input.value }))
   }
 
   const cleanUpString = (str: string, email: boolean = false) => {
@@ -241,11 +122,11 @@ const Reviews: FC<any> = () => {
     return str.replace(/[^\w\d\s\.\-,:;_&!'?]+/g, '')
   }
 
-  const handleCheck = (e: any) => {
-    setChecked(e.target.checked)
+  const handleCheck = (e: SyntheticEvent) => {
+    setChecked((e.target as HTMLInputElement).checked)
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     const { rating, name, email, title, review } = data
     if (
@@ -284,7 +165,7 @@ const Reviews: FC<any> = () => {
     setCurrentPage((prevState) => prevState - 1)
   }
 
-  const handleChangePage = (page: any) => {
+  const handleChangePage = (page: number) => {
     setCurrentPage(page)
   }
 
@@ -296,7 +177,7 @@ const Reviews: FC<any> = () => {
     }
   }
 
-  const handleKeyPrevCardsGroup = (e: React.KeyboardEvent) => {
+  const handleKeyPrevCardsGroup = (e: KeyboardEvent) => {
     e.stopPropagation()
 
     if (e.key === 'Enter') {
@@ -304,7 +185,7 @@ const Reviews: FC<any> = () => {
     }
   }
 
-  const handleKeyChangePage = (e: React.KeyboardEvent, page: any) => {
+  const handleKeyChangePage = (e: KeyboardEvent, page: number) => {
     e.stopPropagation()
 
     if (e.key === 'Enter') {
