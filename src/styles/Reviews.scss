@@ -198,6 +198,7 @@
       .form__star-label {
         cursor: pointer;
         border-bottom: 1px solid transparent;
+        transition: box-shadow .15s,transform .15s;
       }
     }
 
@@ -224,6 +225,10 @@
 
     &__star-input:focus + .form__star-label {
       border-bottom: 1px solid $blue;
+    }
+
+    &__star-label:hover{
+      transform: translateY(-2px);
     }
 
     &__star-label:hover svg {
@@ -288,6 +293,11 @@
     input[type='checkbox'] {
       width: 20px;
       height: 20px;
+    }
+
+    input[type='checkbox']:focus {
+      outline: 1px solid $blue;
+      outline-offset: 4px;
     }
 
     &__input-container input:invalid:focus,
