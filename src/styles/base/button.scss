@@ -30,7 +30,7 @@ button {
   will-change: box-shadow,transform;
 }
 
-button:focus {
+button:focus-visible {
   box-shadow: darken($blue, 10%) 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, darken($blue, 10%) 0 -3px 0 inset;
 }
 

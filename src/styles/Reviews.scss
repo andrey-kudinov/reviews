@@ -268,10 +268,10 @@
       resize: none;
     }
 
-    &__name-input:focus,
-    &__email-input:focus,
-    &__title-input:focus,
-    textarea:focus {
+    &__name-input:focus-visible,
+    &__email-input:focus-visible,
+    &__title-input:focus-visible,
+    textarea:focus-visible {
       outline: 1px solid $blue;
       outline-offset: spacing(5xs);
     }
@@ -295,7 +295,7 @@
       height: 20px;
     }
 
-    input[type='checkbox']:focus {
+    input[type='checkbox']:focus-visible {
       outline: 1px solid $blue;
       outline-offset: 4px;
     }
@@ -417,7 +417,7 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus-visible {
         border: 1px solid $blue;
       }
     }
