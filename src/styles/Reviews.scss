@@ -31,7 +31,7 @@
   }
 
   h4 {
-    margin: spacing(sm) 0 spacing(3xs);
+    margin: 0 0 spacing(3xs);
     text-align: center;
     color: $grey;
     font-size: 1.625rem;
@@ -137,7 +137,7 @@
   &__message {
     display: flex;
     flex-direction: column;
-    padding-bottom: spacing(sm);
+    margin-top: spacing(lg);
   }
 
   &__icon {
@@ -146,6 +146,7 @@
   }
 
   &__text {
+    margin-bottom: 0;
     text-align: center;
     color: $light-grey;
     font-size: 1rem;
