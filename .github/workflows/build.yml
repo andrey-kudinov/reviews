@@ -1,15 +1,17 @@
 name: Try Build
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_dispatch:
+    inputs:
+      BRANCH:
+        description: 'Branch to use'
+        required: true
+        default: 'master'
+        type: choice
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:14
     steps:
     - run: node --version
       name: Check Node Version
