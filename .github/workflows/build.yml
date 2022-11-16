@@ -7,6 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    
+    - uses: actions/setup-node@v3
+      name: Setup node
+      with:
+        node-version: 16.x.x
+        cache: npm
+
     - run: node --version
       name: Check Node Version
     
