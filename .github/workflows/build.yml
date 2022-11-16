@@ -2,12 +2,6 @@ name: Try Build
 
 on:
   workflow_dispatch:
-    inputs:
-      BRANCH:
-        description: 'Branch to use'
-        required: true
-        default: 'master'
-        type: choice
 
 jobs:
   build:
