@@ -15,8 +15,11 @@ jobs:
     - name: Check Node Version
     
     - uses: actions/checkout@v3
+    - name: Checkout code
 
-    - name: Build
-      run: |
-        yarn
-        yarn build
+    - run: yarn
+    - name: Install NPM Packages
+    
+    - run: yarn build
+    - name: Build Project
+      
