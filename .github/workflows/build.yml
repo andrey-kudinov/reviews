@@ -12,14 +12,14 @@ jobs:
     container: node:14
     steps:
     - run: node --version
-    - name: Check Node Version
+      name: Check Node Version
     
     - uses: actions/checkout@v3
-    - name: Checkout code
+      name: Checkout code
 
     - run: yarn
-    - name: Install NPM Packages
+      name: Install NPM Packages
     
     - run: yarn build
-    - name: Build Project
+      name: Build Project
       
